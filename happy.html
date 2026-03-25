@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aica 💌</title>
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* BACKGROUND */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #FE81D4, #FAACBF, #FBC3C1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+/* ENVELOPE */
+.envelope {
+    width: 260px;
+    height: 180px;
+    background: white;
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.6s ease;
+}
+
+.envelope:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #FAACBF;
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+
+/* OPEN EFFECT */
+.envelope.open {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* LETTER */
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
+    overflow-y: auto;
+}
+
+/* TEXT */
+#text {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    padding-right: 110px; /* space for image */
+}
+
+/* 📸 PHOTO */
+.memory-photo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 3px solid white;
+
+    /* polaroid tilt */
+    transform: rotate(5deg);
+
+    /* fade in */
+    opacity: 0;
+    transition: 1s ease;
+}
+
+/* show photo */
+.letter.show .memory-photo {
+    opacity: 1;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE -->
+<div class="envelope" onclick="openLetter()"></div>
+
+<!-- LETTER -->
+<div class="letter" id="letter">
+
+    <!-- 📸 PALITAN MO NG PIC NIYO -->
+    <img src="USSSSSSSSSSS.jpg" class="memory-photo">
+
+    <div id="text"></div>
+</div>
+
+<!-- 🎵 MUSIC -->
+<!-- PALITAN MO FILE NAME -->
+<audio id="bgMusic" loop>
+    <source src="wave-to-earth-love_JeUbR0NM.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const message = `Happy Birthday, babyy.
+
+Out of all the days in a year, this one will always be special to me—because it’s the day you were born, the day someone like you came into this world… and eventually became part of mine.
+
+Thank you. For your presence, for staying, for choosing to be here even when things between us aren’t always easy. Thank you for your strength—the quiet kind, the kind you don’t even notice sometimes. I see it. I see you, even in your worst days.
+
+The memories I cherish the most with you are the simple ones—yung mga araw na magkasama tayo, kahit saglit lang. Kahit kulang tayo sa oras, I still find ways, because being with you matters that much to me. And especially those moments na sabay tayong umuuwi… for me, it’s more than just a routine. It feels like I get to be your lighthouse for a while—guiding you, staying beside you, making sure you’re safe, even in the quietest moments.
+
+I know I’m not the easiest person to deal with. There are words I can’t always say properly, emotions I struggle to express, and moments where we end up fighting out of nowhere. I don’t like that either. Pero in those situations, I’m learning to love you better, even when it’s hard. Hindi ako perpekto. Hindi ako mapera. Minsan sabog, lutang, or bangag ako—and I’m sorry for the times that affected you. I’m still growing, still trying to be better.
+
+But one thing I’m sure of—I don’t want to lose you. I’m asking, sana mag-stay ka pa rin. Because despite everything, ikaw pa rin yung pipiliin ko. And I will always cherish you, Aica.
+
+You’re more than just my girlfriend. You’re someone I genuinely care about, someone I want to understand deeper, someone I want to grow with. I don’t just want memories with you—I want something that lasts.
+
+And for the future… I’m hoping for a life where we both succeed in our own paths, where we build something stable—not just individually, but together.
+
+Happy Birthday, Aica.
+
+I love you. Always.`;
+
+let i = 0;
+
+function openLetter() {
+    document.querySelector('.envelope').classList.add('open');
+
+    const letter = document.getElementById('letter');
+    letter.style.display = 'block';
+
+    // show image fade
+    letter.classList.add('show');
+
+    // 🎵 autoplay music AFTER click (works on phone)
+    document.getElementById('bgMusic').play();
+
+    typeWriter();
+}
+
+function typeWriter() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 18);
+    }
+}
+
+</script>
+
+</body>
+</html>
